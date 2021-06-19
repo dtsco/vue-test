@@ -1,28 +1,28 @@
 <template>
   <section>
     <b-overlay :show="isLoading" rounded="sm">
-      <b-card-group columns>
-        <b-card
-          v-for="cocktail in cocktailsList"
-          :key="cocktail.idDrink"
-          no-body
-          class="cocktail-card"
-          @click="showView(cocktail.idDrink)"
-        >
-          <b-card-img-lazy
-            :src="cocktail.strDrinkThumb"
-            :alt="cocktail.strDrink"
-            top
-            blank-color="#f5f5f5"
-            height="300"
-            blank-height="300"
-            class="cocktail-img"
-          ></b-card-img-lazy>
-          <b-card-body>
-            <b-card-title>{{ cocktail.strDrink }}</b-card-title>
-          </b-card-body>
-        </b-card>
-      </b-card-group>
+      <b-row>
+        <b-col v-for="cocktail in cocktailsList" :key="cocktail.idDrink" md="4">
+          <b-card
+            no-body
+            class="cocktail-card mb-4"
+            @click="showView(cocktail.idDrink)"
+          >
+            <b-card-img-lazy
+              :src="cocktail.strDrinkThumb"
+              :alt="cocktail.strDrink"
+              top
+              blank-color="#f5f5f5"
+              height="300"
+              blank-height="300"
+              class="cocktail-img"
+            ></b-card-img-lazy>
+            <b-card-body>
+              <b-card-title>{{ cocktail.strDrink }}</b-card-title>
+            </b-card-body>
+          </b-card>
+        </b-col>
+      </b-row>
     </b-overlay>
     <b-modal
       v-model="modalShow"

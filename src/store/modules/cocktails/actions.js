@@ -6,6 +6,8 @@ import {
   CHANGE_FILTER,
 } from "./contants";
 
+let filterTimeout = null;
+
 export default {
   async getCocktailsList({ commit, state }) {
     try {
@@ -23,6 +25,11 @@ export default {
 
   filterCocktailsList({ commit, dispatch }, value) {
     commit(CHANGE_FILTER, value);
-    dispatch("getCocktailsList");
+    if (filterTimeout) {
+      clearTimeout(filterTimeout);
+    }
+    filterTimeout = setTimeout(() => {
+      dispatch("getCocktailsList");
+    }, 300);
   },
 };
