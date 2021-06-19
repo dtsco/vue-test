@@ -9,7 +9,7 @@
     </b-button>
     <b-form-input
       v-model="search"
-      class="ml-4"
+      class="ml-md-4 ml-2"
       placeholder="Название коктейля…"
     ></b-form-input>
     <b-popover
@@ -60,6 +60,7 @@ export default {
         return this.$store.state.cocktails.filters.alcoholic;
       },
       set(value) {
+        this.$router.push()
         this.filterCocktailsList({
           field: "alcoholic",
           value,
@@ -92,3 +93,11 @@ export default {
   methods: mapActions("cocktails", ["filterCocktailsList"]),
 };
 </script>
+
+<style lang="scss">
+.cocktails-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

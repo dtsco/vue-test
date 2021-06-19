@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-overlay :show="isLoading" rounded="sm">
     <b-row align-h="between">
       <b-col cols="auto"
         ><b-button class="mb-4" variant="outline-primary" @click="hideModal"
@@ -15,13 +15,14 @@
           ></b-icon></b-button
       ></b-col>
     </b-row>
+    <b-skeleton-img v-if="isLoading" no-aspect height="350px"></b-skeleton-img>
     <b-img-lazy
+      v-else
       :src="cocktailInfo.strDrinkThumb"
+      blank-color="#f5f5f5"
+      blank-height="350"
       fluid-grow
       center
-      blank
-      blank-color="#F5F5F5"
-      height="350"
       alt="cocktailInfo.strDrink"
       class="view-image mb-3"
     ></b-img-lazy>
@@ -37,7 +38,7 @@
     <h3 class="mb-4">{{ cocktailInfo.strDrink }}</h3>
     <b-table :items="ingredients" bordered small></b-table>
     <p>{{ cocktailInfo.strInstructions }}</p>
-  </div>
+  </b-overlay>
 </template>
 
 <script>
@@ -52,7 +53,9 @@ export default {
   computed: {
     ...mapState({
       isLoading: (state) => state.view.isLoading,
-      cocktailInfo: (state) => state.view.data,
+      cocktailInfo(state) {
+        return state.view.data?.idDrink === this.id ? state.view.data : {};
+      },
     }),
     ...mapGetters("cocktails", ["isFavorite"]),
     ingredients: function () {

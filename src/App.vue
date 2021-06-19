@@ -8,7 +8,7 @@
               <cocktails-filter></cocktails-filter>
             </b-nav-form>
           </b-navbar-nav>
-          <b-navbar-nav class="ml-auto">
+          <b-navbar-nav class="ml-2">
             <b-nav-text>
               <cocktails-favorites></cocktails-favorites>
             </b-nav-text>
